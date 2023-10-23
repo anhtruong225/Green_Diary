@@ -1,18 +1,47 @@
 import mongoose from "mongoose";
 
-const plantSchema = new mongoose.Schema({
-  name: String,
-  scientificName: String,
-  url: String,
-  information: String,
-  plantCare: {
-    watering: String,
-    light: String,
-    temperature: String,
-    fertilization: String,
+const plantsSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "name is required"],
+    trim: true,
   },
-  funFact: String,
-  randomQuotes: String,
+  scientificName: {
+    type: String,
+    trim: true,
+  },
+  url: {
+    type: String,
+    required: [true, "URL image is required"],
+  },
+  information: {
+    type: String,
+    required: [true, "information is required"],
+  },
+  plantCare: {
+    watering: {
+      type: String,
+      required: [true, "watering information is required"],
+    },
+    light: {
+      type: String,
+      required: [true, "light information is required"],
+    },
+    temperature: {
+      type: String,
+      required: [true, "favorite temperature is required"],
+    },
+    fertilization: {
+      type: String,
+      required: [true, "fertilizing information is required"],
+    },
+  },
+  funFacts: {
+    type: String,
+  },
+  randomQuotes: {
+    type: String,
+  },
 });
 
-export default mongoose.model("Plants", plantSchema);
+export default mongoose.model("Plants", plantsSchema);
