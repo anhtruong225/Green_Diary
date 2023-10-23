@@ -1,4 +1,6 @@
 import express from "express";
+import "./db/server.js";
+import mongoose from "mongoose";
 
 const app = express();
 const port = 8000;
