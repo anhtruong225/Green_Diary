@@ -1,9 +1,10 @@
 import Plants from "../models/Plants.js";
+import ErrorResponse from "../utils/ErrorResponse.js";
 
 export const getAllPlants = async (req, res, next) => {
   try {
     const plants = await Plants.find();
-    res.setHeader("Content-Type", "application/json");
+    // res.setHeader("Content-Type", "application/json");
     // res.send(JSON.stringify(plants));
 
     if (!plants.length) {
