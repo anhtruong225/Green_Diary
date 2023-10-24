@@ -3,11 +3,11 @@ import Plants from "../models/Plants.js";
 export const getAllPlants = async (req, res, next) => {
   try {
     const plants = await Plants.find();
-    res.setHeader("Content-Type", "application/json");
+    // res.setHeader("Content-Type", "application/json");
     // res.send(JSON.stringify(plants));
 
     if (!plants.length) {
-      throw new ErrorResponse("Plants not found", 404);
+      throw { statusCode: 404, message: "Plants not found" };
     }
     res.json(plants);
   } catch (error) {
@@ -20,7 +20,7 @@ export const getAllPlants = async (req, res, next) => {
 export const getPlantById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const plant = await Plants.findById({ id });
+    const plant = await Plants.findById(id);
 
     if (!plant) {
       return res.status(404).json({ message: "Plant not found" });
