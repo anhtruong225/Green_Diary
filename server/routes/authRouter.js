@@ -5,6 +5,7 @@ import verifyToken from "../middlewares/verifyToken.js";
 const authRouter = Router();
 authRouter.post("/register", authController.register);
 authRouter.post("/login", authController.logIn);
+authRouter.post("/logout", verifyToken, authController.logout);
 authRouter.get("/me", verifyToken, authController.getUser);
 
 export default authRouter;

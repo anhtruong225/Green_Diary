@@ -43,6 +43,10 @@ const plantsSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Users",
+  },
 });
 
 export default mongoose.model("Plants", plantsSchema, "Plants");
