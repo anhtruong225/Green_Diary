@@ -1,4 +1,5 @@
 import Plants from "../models/Plants.js";
+import ErrorResponse from "../utils/ErrorResponse.js";
 
 export const getAllPlants = async (req, res, next) => {
   try {
