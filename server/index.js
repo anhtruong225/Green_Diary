@@ -15,18 +15,15 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);
-
-app.use(errorHandler);
-
+app.use("/plants", plantsRouter);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use("/plants", plantsRouter);
 
 // app.get("/", (req, res) => {
 //   res.send("Hello World!");
 // });
-
+app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

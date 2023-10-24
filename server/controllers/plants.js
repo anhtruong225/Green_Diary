@@ -7,7 +7,7 @@ export const getAllPlants = async (req, res, next) => {
     // res.send(JSON.stringify(plants));
 
     if (!plants.length) {
-      throw { statusCode: 404, message: "Plants not found" };
+      throw new ErrorResponse("Plants not found", 404);
     }
     res.json(plants);
   } catch (error) {

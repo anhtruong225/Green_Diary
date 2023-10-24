@@ -45,4 +45,4 @@ const plantsSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Plants", plantsSchema);
+export default mongoose.model("Plants", plantsSchema, " Plants");
