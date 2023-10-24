@@ -1,6 +1,6 @@
-export const errorHandler = (error, req, res, next) => {
-  const statusCode = error.statusCode || 500;
-  const message = error.message || "Server Error";
-  res.status(statusCode).json({ message: message });
-  next(error);
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.statusCode || 500).json({ error: err.message });
 };
+
+export default errorHandler;
