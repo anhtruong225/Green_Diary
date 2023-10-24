@@ -41,6 +41,7 @@ const plantsSchema = new mongoose.Schema({
   },
   randomQuotes: {
     type: String,
+    default: null,
   },
 });
 
