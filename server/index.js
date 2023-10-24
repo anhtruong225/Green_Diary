@@ -6,8 +6,6 @@ import authRouter from "./routes/authRouter.js";
 import "./db/server.js";
 import mongoose from "mongoose";
 import plantsRouter from "./routes/plantsRouter.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
-import cors from "cors";
 
 const app = express();
 const port = 8000;
