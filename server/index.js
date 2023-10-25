@@ -18,13 +18,12 @@ app.use(cookieParser());
 
 app.use("/auth", authRouter);
 app.use("/plants", plantsRouter);
+app.use("/posts", postsRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
 app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
