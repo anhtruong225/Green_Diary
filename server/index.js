@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import errorHandler from "./middlewares/errorHandler.js";
 import "./db/server.js";
-import authRouter from "./routes/authRouter.js";
-import "./db/server.js";
 import mongoose from "mongoose";
 import plantsRouter from "./routes/plantsRouter.js";
+import authRouter from "./routes/authRouter.js";
+import postsRouter from "./routes/postsRouter.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
