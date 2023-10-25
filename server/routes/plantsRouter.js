@@ -9,7 +9,8 @@ plantsRouter.route("/").get(plantsController.getAllPlants);
 plantsRouter.route("/:id").get(plantsController.getPlantById);
 
 //mit Login
-plantsRouter.route("/").get(plantsController.getAllPlantsLogin);
-plantsRouter.route("/:id").get(plantsController.getPlantByIdLogin);
+
+// plantsRouter.route("/").get(plantsController.getAllPlantsLogin);
+// plantsRouter.route("/:id").get(plantsController.getPlantByIdLogin);
 
 export default plantsRouter;

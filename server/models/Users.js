@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "../images/userPhoto.png",
   },
+  savedPlant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Plants",
+  },
 });
 
 export default mongoose.model("Users", userSchema);

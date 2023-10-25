@@ -3,6 +3,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import Plants from "../models/Plants.js";
 
 //Register
 
@@ -47,7 +48,26 @@ export const getUser = asyncHandler(async (req, res, next) => {
   res.json(user);
 });
 
+//logout
+
 export const logout = asyncHandler(async (req, res, next) => {
   res.clearCookie("token");
   res.status(200).send({ status: "success" });
+});
+
+//savedPlant
+export const savedPlant = asyncHandler(async (req, res, next) => {
+  const favoritePlants = await Plants.find().populate("user");
+  res.json(favoritePlants);
+});
+
+//savedPlantById
+
+export const savedPlantById = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+
+  const favoritePlantById = await Plants.findById(id).populate("user");
+  if (!favoritePlantById)
+    throw new ErrorResponse(`Plant with ${id} does not exist`, 404);
+  res.send(favoritePlantById);
 });
