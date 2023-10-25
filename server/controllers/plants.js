@@ -1,5 +1,8 @@
 import Plants from "../models/Plants.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
+import asyncHandler from "../utils/asyncHandler.js";
+
+//without Login
 
 export const getAllPlants = async (req, res, next) => {
   try {
@@ -32,3 +35,18 @@ export const getPlantById = async (req, res, next) => {
     next(error);
   }
 };
+
+//with Login
+
+export const getAllPlantsLogin = asyncHandler(async (req, res, next) => {
+  const plants = await Plants.find().populate("user");
+  res.json(plants);
+});
+
+export const getPlantByIdLogin = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+
+  const plants = await Plants.findById(id).populate("user");
+  if (!plants) throw new ErrorResponse(`Plant with ${id} does not exist`, 404);
+  res.send(plants);
+});
