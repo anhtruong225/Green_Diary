@@ -1,7 +1,7 @@
 import Post from "../models/Post.js";
 
 import asyncHandler from "../utils/asyncHandler.js";
-import errorHandler from "../utils/errorHandler.js";
+import errorHandler from "../utils/ErrorResponse.js";
 
 export const createPost = asyncHandler(async (req, res, next) => {
   const { plantId, title, content, image, date } = req.body;
