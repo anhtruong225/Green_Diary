@@ -19,10 +19,26 @@ export const createPost = asyncHandler(async (req, res, next) => {
   res.status(201).json(post);
 });
 
+export const getAllPost = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+
+    if (!posts.length) {
+      throw { statusCode: 404, message: "Posts not found" };
+    }
+    res.json(posts);
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      error: error.message || "An error occurred while fetching the posts.",
+    });
+    next(error);
+  }
+};
+
 export const getPostById = asyncHandler(async (req, res, next) => {
   const postId = req.params.id;
 
-  const post = await Post.findById(postId).populate("user").populate("plant");
+  const post = await Post.findById(postId).populate("user");
 
   if (!post) {
     return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
@@ -63,7 +79,7 @@ export const deletePost = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(postId);
 
   if (!post) {
-    return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
+    return next(new ErrorResponse("Post not found with ID ${postId}, 404"));
   }
 
   const deletedPost = await Post.findByIdAndDelete(postId).populate("user");
