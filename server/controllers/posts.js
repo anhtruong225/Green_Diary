@@ -1,7 +1,7 @@
 import Post from "../models/Post.js";
 
 import asyncHandler from "../utils/asyncHandler.js";
-import errorResponse from "../utils/ErrorResponse.js";
+import ErrorResponse from "../utils/ErrorResponse.js";
 
 export const createPost = asyncHandler(async (req, res, next) => {
   const { plantId, title, content, image, date } = req.body;
@@ -77,6 +77,7 @@ export const updatePost = asyncHandler(async (req, res, next) => {
 //   }).populate("user");
 //   res.json({ success: `Post with ${id} was deleted` });
 // });
+
 export const deletePost = asyncHandler(async (req, res, next) => {
   const postId = req.params.id;
   const uid = req.uid;
@@ -84,10 +85,10 @@ export const deletePost = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(postId);
 
   if (!post) {
-    return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
+    return next(new ErrorResponse("Post not found with ID ${postId}, 404"));
   }
 
   const deletedPost = await Post.findByIdAndDelete(postId).populate("user");
 
-  res.json(deletedPost);
+  res.json({ success: `Post with ${id} was deleted` });
 });
